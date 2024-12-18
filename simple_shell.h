@@ -42,5 +42,6 @@ void execute_command(char **argv);
 char prompt(void);
 void env_command(void);
 char **tokenize_line(char *line_copy, int *argc);
+void *_realloc(void *ptr, size_t old_size, size_t new_size);
 
 #endif

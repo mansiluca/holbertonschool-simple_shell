@@ -44,7 +44,8 @@ char **tokenize_line(char *line_copy, int *argc)
 
 	while (token)
 	{
-		argv = realloc(argv, sizeof(char *) * (*argc + 1));
+		argv = _realloc(argv, sizeof(char *) * (*argc),
+		sizeof(char *) * (*argc + 1));
 		if (!argv)
 		{
 			perror("Error reallocating memory");
@@ -61,7 +62,7 @@ char **tokenize_line(char *line_copy, int *argc)
 		token = strtok(NULL, " ");
 	}
 
-	argv = realloc(argv, sizeof(char *) * (*argc + 1));
+	argv = _realloc(argv, sizeof(char *) * (*argc), sizeof(char *) * (*argc + 1));
 	if (!argv)
 	{
 		perror("Error reallocating memory");
