@@ -88,7 +88,6 @@ char *read_line(void)
 	{
 		if (feof(stdin))
 		{
-			printf("\n");
 			free(line);
 			exit(EXIT_SUCCESS);
 		}
@@ -130,9 +129,8 @@ void simple_shell(void)
 	while (1)
 	{
 
-		if (isatty(STDIN_FILENO) == 1)
+		if (isatty(STDIN_FILENO))
 			prompt();
-
 		line = read_line();
 		if (!line)
 			continue;

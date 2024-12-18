@@ -39,7 +39,7 @@ char *find_command(const char *command);
 void free_argv(char **argv);
 char *read_line(void);
 void execute_command(char **argv);
-char *prompt(void);
+char prompt(void);
 void env_command(void);
 char **tokenize_line(char *line_copy, int *argc);
 void *_realloc(void *ptr, size_t old_size, size_t new_size);

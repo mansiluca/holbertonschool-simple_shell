@@ -14,7 +14,7 @@ void execute_command(char **argv)
 	full_path = find_command(argv[0]);
 	if (!full_path)
 	{
-		fprintf(stderr, "%s: Command not found\n", argv[0]);
+		fprintf(stderr, "%s: Command not found", argv[0]);
 		return;
 	}
 
@@ -29,9 +29,9 @@ void execute_command(char **argv)
 	{
 		if (execve(full_path, argv, environ) == -1)
 		{
-			perror("Error executing command");
-			free(full_path);
-			exit(EXIT_FAILURE);
+			perror(argv[0]);
+            free(full_path);
+            exit(EXIT_FAILURE);
 		}
 	}
 	else
