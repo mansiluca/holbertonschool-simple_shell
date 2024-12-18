@@ -5,9 +5,10 @@
  * Return: pointer to line
  */
 
-char prompt(void)
+char *prompt(void)
 {
 	printf("$ ");
+	fflush(stdout);
 
-	return (0);
+	return (NULL);
 }

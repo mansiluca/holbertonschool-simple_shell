@@ -15,26 +15,29 @@ void execute_command(char **argv)
 	if (!full_path)
 	{
 		fprintf(stderr, "%s: Command not found\n", argv[0]);
+		return;
+	}
+
+	pid = fork();
+	if (pid == -1)
+	{
+		perror("Error:");
+		free(full_path);
+		return;
+	}
+	else if (pid == 0)
+	{
+		if (execve(full_path, argv, environ) == -1)
+		{
+			perror("Error executing command");
+			free(full_path);
+			exit(EXIT_FAILURE);
+		}
 	}
 	else
 	{
-		pid = fork();
-		if (pid == -1)
-		{
-			perror("Error:");
-		}
-		else if (pid == 0)
-		{
-			if (execve(full_path, argv, NULL) == -1)
-			{
-				perror("Error executing command");
-				exit(EXIT_FAILURE);
-			}
-		}
-		else
-		{
-			wait(&status);
-		}
-		free(full_path);
+		wait(&status);
 	}
+
+	free(full_path);
 }

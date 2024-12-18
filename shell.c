@@ -84,7 +84,6 @@ char *read_line(void)
 	char *line = NULL;
 	size_t len = 0;
 
-	prompt();
 	if (getline(&line, &len, stdin) == -1)
 	{
 		if (feof(stdin))
@@ -130,6 +129,10 @@ void simple_shell(void)
 
 	while (1)
 	{
+
+		if (isatty(STDIN_FILENO) == 1)
+			prompt();
+
 		line = read_line();
 		if (!line)
 			continue;
@@ -145,7 +148,7 @@ void simple_shell(void)
 			fprintf(stderr, "Error: Failed to parse command\n");
 			continue;
 		}
-		if (strcmp(argv[0], "exit") == 0)
+		if (argv[0] && strcmp(argv[0], "exit") == 0)
 		{
 			free_argv(argv);
 			exit(EXIT_SUCCESS);
