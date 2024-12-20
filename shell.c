@@ -1,4 +1,5 @@
 #include "simple_shell.h"
+#include <errno.h>
 
 /**
  * split_command - split a command into arguments
@@ -83,8 +84,10 @@ char *read_line(void)
 {
 	char *line = NULL;
 	size_t len = 0;
+	ssize_t nread;
 
-	if (getline(&line, &len, stdin) == -1)
+	nread = getline(&line, &len, stdin);
+	if (nread == -1)
 	{
 		if (feof(stdin))
 		{
@@ -118,6 +121,7 @@ void free_argv(char **argv)
 
 /**
  * simple_shell - a simple shell
+ * @argv: arguments to shell
  * Return: void
  */
 
@@ -128,7 +132,6 @@ void simple_shell(void)
 
 	while (1)
 	{
-
 		if (isatty(STDIN_FILENO))
 			prompt();
 		line = read_line();
@@ -150,6 +153,7 @@ void simple_shell(void)
 		{
 			free_argv(argv);
 			exit(EXIT_SUCCESS);
+			return;
 		}
 		if (strcmp(argv[0], "env") == 0)
 		{
