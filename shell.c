@@ -89,7 +89,7 @@ char *read_line(void)
 	nread = getline(&line, &len, stdin);
 	if (nread == -1)
 	{
-		if (errno == ENOENT || errno == 0)
+		if (feof(stdin))
 		{
 			free(line);
 			exit(EXIT_SUCCESS);
@@ -151,9 +151,13 @@ void simple_shell(const char *exec_name)
 		}
 		if (argv[0] && strcmp(argv[0], "exit") == 0)
 		{
+			int status = EXIT_SUCCESS;
+			if (argv[1] != NULL)
+			{
+				status = atoi(argv[1]);
+			}
 			free_argv(argv);
-			exit(EXIT_SUCCESS);
-			return;
+			exit(status);
 		}
 		if (strcmp(argv[0], "env") == 0)
 		{
