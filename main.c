@@ -7,8 +7,15 @@
  * Return: 0 on success
  */
 
-int main(void)
+int main(int argc, char **argv)
 {
-	simple_shell();
+	if (argc > 0)
+	{
+		simple_shell(argv[0]);
+	}
+	else
+	{
+		simple_shell("hsh");
+	}
 	return (0);
 }

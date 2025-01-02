@@ -89,7 +89,7 @@ char *read_line(void)
 	nread = getline(&line, &len, stdin);
 	if (nread == -1)
 	{
-		if (feof(stdin))
+		if (errno == ENOENT || errno == 0)
 		{
 			free(line);
 			exit(EXIT_SUCCESS);
@@ -121,11 +121,11 @@ void free_argv(char **argv)
 
 /**
  * simple_shell - a simple shell
- * @argv: arguments to shell
+ * @exec_name: name of the executable
  * Return: void
  */
 
-void simple_shell(void)
+void simple_shell(const char *exec_name)
 {
 	char *line;
 	char **argv;
@@ -161,7 +161,7 @@ void simple_shell(void)
 			free_argv(argv);
 			continue;
 		}
-		execute_command(argv);
+		execute_command(argv, exec_name);
 		free_argv(argv);
 	}
 }

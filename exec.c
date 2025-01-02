@@ -3,9 +3,10 @@
 /**
  * execute_command - execute a command
  * @argv: arguments to command
+ * @exec_name: name of the executable
  */
 
-void execute_command(char **argv)
+void execute_command(char **argv, const char *exec_name)
 {
 	pid_t pid;
 	int status;
@@ -15,8 +16,8 @@ void execute_command(char **argv)
 	full_path = find_command(argv[0]);
 	if (!full_path)
 	{
-		fprintf(stderr, "line %d: %s: command not found\n",
-			count, argv[0]);
+		fprintf(stderr, "%s: %d: %s: command not found\n",
+				exec_name, count, argv[0]);
 		count++;
 		return;
 	}
@@ -24,7 +25,7 @@ void execute_command(char **argv)
 	pid = fork();
 	if (pid == -1)
 	{
-		perror(argv[0]);
+		perror(exec_name);
 		free(full_path);
 		count++;
 		return;
@@ -33,7 +34,7 @@ void execute_command(char **argv)
 	{
 		if (execve(full_path, argv, environ) == -1)
 		{
-			perror(argv[0]);
+			perror(exec_name);
 			free(full_path);
 			exit(127);
 		}
