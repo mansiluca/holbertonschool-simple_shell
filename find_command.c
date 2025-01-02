@@ -3,6 +3,7 @@
 #include <string.h>
 #include <stdlib.h>
 #include <sys/stat.h>
+#include <errno.h>
 
 /**
  * find_command - find a command in the PATH
@@ -24,6 +25,7 @@ char *find_command(const char *command)
 		{
 			return (strdup(command));
 		}
+		errno = ENOENT;
 		return (NULL);
 	}
 	if (!path)
