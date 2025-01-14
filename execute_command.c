@@ -15,7 +15,7 @@ int execute_command(arguments_t *args)
 
 	if (!cmd_path)
 	{
-		print_error(args, "command not found");
+		print_error(args, "not found");
 		return (127);
 	}
 
