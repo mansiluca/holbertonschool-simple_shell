@@ -41,7 +41,7 @@ int main(int argc, char **argv, char **env)
 
 		args.command = strtok(args.command, "\n");
 		args.cmd_count++;
-		status = interpreter(&args);
+		status = execute_command(&args);
 		free(args.command);
 		args.command = NULL;
 
