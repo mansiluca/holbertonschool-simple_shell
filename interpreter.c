@@ -42,17 +42,6 @@ int handle_builtin(arguments_t *args)
 		exit(exit_code);
 	}
 
-	if (strncmp(args->command, "cd", 2) == 0)
-	{
-		char *dir = strtok(args->command + 2, " ");
-
-		if (!dir)
-			dir = getenv("HOME");
-		if (chdir(dir) != 0)
-			perror(args->name);
-		return (0);
-	}
-
 	if (strcmp(args->command, "env") == 0)
 	{
 		for (i = 0; args->env[i]; i++)
