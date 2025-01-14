@@ -8,18 +8,23 @@
  */
 int interpreter(arguments_t *args)
 {
-	char *cmd, *saveptr;
+	char *cmd;
 	int status = 0;
+	char *command_copy = strdup(args->command);
 
-	cmd = strtok_r(args->command, ";", &saveptr);
+	if (command_copy == NULL)
+		return (-1);
+
+	cmd = strtok(command_copy, ";");
 	while (cmd != NULL)
 	{
 		args->command = cmd;
 		if (handle_builtin(args) == -1)
 			status = execute_command(args);
-		cmd = strtok_r(NULL, ";", &saveptr);
+		cmd = strtok(NULL, ";");
 	}
 
+	free(command_copy);
 	return (status);
 }
 
