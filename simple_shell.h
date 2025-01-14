@@ -33,5 +33,8 @@ int handle_builtin(arguments_t *args);
 char **parse_command(arguments_t *args, int *argc);
 void free_args(char **argv, int argc);
 char *_getenv(const char *name);
+size_t _strspn(const char *s, const char *accept);
+char *_strpbrk(const char *s, const char *accept);
+char *_strtok_r(char *s, const char *delim, char **save_ptr);
 
 #endif
