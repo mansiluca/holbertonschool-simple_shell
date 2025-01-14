@@ -15,6 +15,7 @@
  * @command: Command string
  * @env: Environment variables
  * @cmd_count: Command count
+ * @last_status: Last command exit status
  */
 typedef struct arguments
 {
@@ -22,6 +23,7 @@ typedef struct arguments
 	char *command;
 	char **env;
 	int cmd_count;
+	int last_status;
 } arguments_t;
 
 extern char **environ;

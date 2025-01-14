@@ -39,6 +39,8 @@ int handle_builtin(arguments_t *args)
 
 		if (args->command[4] != '\0')
 			exit_code = atoi(args->command + 5);
+		else if (args->last_status != 0)
+			exit_code = args->last_status;
 		exit(exit_code);
 	}
 
