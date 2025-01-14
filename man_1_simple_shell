@@ -1,0 +1,39 @@
+.TH SIMPLE_SHELL 1 "December 2024" "1.0" "Simple Shell - Holberton School"
+.SH NAME
+simple_shell \- a simple Unix shell
+
+.SH SYNOPSIS
+.B simple_shell
+.RI [ options ]
+
+.SH DESCRIPTION
+.B simple_shell
+is a basic Unix shell that provides a command line interface for users to interact with the operating system.
+
+.SH OPTIONS
+.TP
+.B \-h, \-\-help
+Display this help and exit.
+
+.SH USAGE
+The simple shell can execute commands, handle input and output redirection, and run built-in shell commands.
+
+.SH EXAMPLES
+Run the shell:
+.EX
+$ ./simple_shell
+.EX
+
+Execute a command:
+.EX
+$ ls -l
+.EX
+
+.SH AUTHOR
+Written by Luca Mansi.
+
+.SH REPORTING BUGS
+Report bugs to <luca@mansi.fr>.
+
+.SH COPYRIGHT
+This is free software; see the source for copying conditions. There is NO warranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
