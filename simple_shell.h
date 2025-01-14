@@ -24,6 +24,7 @@ typedef struct arguments
 	int cmd_count;
 } arguments_t;
 
+extern char **environ;
 int interpreter(arguments_t *args);
 int execute_command(arguments_t *args);
 void print_error(arguments_t *args, const char *msg);
@@ -31,6 +32,6 @@ char *find_command(const char *command);
 int handle_builtin(arguments_t *args);
 char **parse_command(arguments_t *args, int *argc);
 void free_args(char **argv, int argc);
-
+char *_getenv(const char *name);
 
 #endif

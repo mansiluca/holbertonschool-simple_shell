@@ -1,14 +1,14 @@
 #include "simple_shell.h"
 
 /**
- * find_command - Locate a command in the PATH
- * @command: Command to locate
+ * find_command - Find a command in the PATH
+ * @command: Command to find
  *
- * Return: Full path to command or NULL
+ * Return: Full path to the command or NULL
  */
 char *find_command(const char *command)
 {
-	char *path = getenv("PATH");
+	char *path = _getenv("PATH");
 	char *token, *full_path, *path_copy;
 
 	if (!path || command[0] == '/')
