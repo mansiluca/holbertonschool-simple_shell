@@ -39,8 +39,8 @@ int execute_command(arguments_t *args)
 	else
 	{
 		wait(&status);
-		free(cmd_path);
 	}
 
+	free(cmd_path);
 	return (WEXITSTATUS(status));
 }
