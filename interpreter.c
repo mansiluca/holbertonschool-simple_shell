@@ -41,7 +41,8 @@ int handle_builtin(arguments_t *args)
 			exit_code = atoi(args->command + 5);
 		else if (args->last_status != 0)
 			exit_code = args->last_status;
-		exit(exit_code);
+		args->exit_code = exit_code;
+		return (exit_code);
 	}
 
 	if (strcmp(args->command, "env") == 0)
