@@ -7,11 +7,12 @@
 5. [Built-ins](#built-ins)
 6. [Examples](#examples)
 7. [Non-Interactive Mode](#non-interactive-mode)
-8. [Contributing](#contributing)
-9. [Requirements](#requirements)
-10. [Flowchart](#flowchart)
-11. [Man Page](#man-page)
-12. [License](#license)
+8. [Leak Test](#leak-test)
+9. [Contributing](#contributing)
+10. [Requirements](#requirements)
+11. [Flowchart](#flowchart)
+12. [Man Page](#man-page)
+13. [License](#license)
 
 ## Introduction
 The `holbertonschool-simple_shell` is a simple UNIX command interpreter that replicates the functionality of the simple shell (sh). This project is part of the curriculum at Holberton School and aims to deepen understanding of system calls, processes, and file descriptors.
@@ -87,6 +88,15 @@ Where `commands.txt` contains:
 ls -l
 pwd
 ```
+
+## Leak Test
+To ensure that the simple shell does not have memory leaks, you can use `valgrind`. Here is an example of how to run a leak test:
+
+```sh
+valgrind --leak-check=full --track-origins=yes ./hsh
+```
+
+This command will execute the shell and provide a detailed report of any memory leaks.
 
 ## Contributing
 Contributions are welcome! Please follow these steps to contribute:
