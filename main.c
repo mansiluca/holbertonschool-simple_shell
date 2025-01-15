@@ -36,6 +36,7 @@ int main(int argc, char **argv, char **env)
 		{
 			free(args.command);
 			args.command = NULL;
+			args.cmd_count++;
 			continue;
 		}
 
@@ -48,6 +49,5 @@ int main(int argc, char **argv, char **env)
 		if (status == EXIT_FAILURE)
 			break;
 	}
-
 	return (status);
 }

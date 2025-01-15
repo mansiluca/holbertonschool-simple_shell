@@ -39,6 +39,11 @@ int handle_builtin(arguments_t *args)
 
 		if (args->command[4] != '\0')
 			exit_code = atoi(args->command + 5);
+		if (exit_code < 0)
+		{
+			print_error(args, "Illegal number");
+			return (-1);
+		}
 		exit(exit_code);
 	}
 
